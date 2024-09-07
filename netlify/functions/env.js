@@ -1,29 +1,46 @@
-// netlify/functions/env.js
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
+const apiKey = process.env.GEMINI_API_KEY; // Ensure this is set in Netlify environment variables
+const genAI = new GoogleGenerativeAI(apiKey);
+
+const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-flash",
+});
+
+const generationConfig = {
+  temperature: 1,
+  topP: 0.95,
+  topK: 64,
+  maxOutputTokens: 8192,
+  responseMimeType: "text/plain",
+};
+
 exports.handler = async function(event, context) {
-    const apiKey = process.env.API_KEY;
-    if (!apiKey) {
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: "API_KEY is not set" }),
-        };
-    }
+  const { prompt } = JSON.parse(event.body);
 
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  if (!prompt) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: "Prompt is required" }),
+    };
+  }
 
-    try {
-        const prompt = JSON.parse(event.body).prompt;
-        const result = await model.generateContent(prompt);
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ text: result.response.text() }),
-        };
-    } catch (error) {
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: error.message }),
-        };
-    }
+  try {
+    const chatSession = model.startChat({
+      generationConfig,
+      history: [],
+    });
+
+    const result = await chatSession.sendMessage(prompt);
+    
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ text: result.response.text() }),
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message }),
+    };
+  }
 };
