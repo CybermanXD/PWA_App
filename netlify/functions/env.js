@@ -1,7 +1,12 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const {
+  GoogleGenerativeAI,
+  HarmCategory,
+  HarmBlockThreshold,
+} = require("@google/generative-ai");
 
-const apiKey = process.env.GEMINI_API_KEY; // Ensure this is set in Netlify environment variables
+const apiKey = process.env.GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
+ 
 
 const model = genAI.getGenerativeModel({
   model: "gemini-1.5-flash",
