@@ -1,11 +1,22 @@
+/* public/style.css */
 body {
     font-family: Arial, sans-serif;
-    padding: 20px;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-#app {
+.container {
     max-width: 600px;
     margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
 }
 
 input, button {
@@ -13,10 +24,22 @@ input, button {
     width: 100%;
     margin: 10px 0;
     padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
 button:disabled {
-    background-color: #ccc;
+    background-color: #d6d6d6;
     cursor: not-allowed;
 }
- 
+
+#output {
+    margin-top: 20px;
+}
