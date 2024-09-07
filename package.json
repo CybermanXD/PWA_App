@@ -8,10 +8,9 @@
   },
   "dependencies": {
     "http-server": "^14.1.1",
-    "jsPDF": "^2.5.1"
+    "jspdf": "^2.5.1"  // Make sure to use the correct package name and version
   },
   "devDependencies": {
     "netlify-cli": "^14.8.2"
   }
 }
- 
