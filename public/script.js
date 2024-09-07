@@ -1,4 +1,3 @@
-// public/script.js
 async function generateNotes(novelName, authorName) {
     const endpoint = '/.netlify/functions/env';
     
