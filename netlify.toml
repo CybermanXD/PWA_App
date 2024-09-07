@@ -1,0 +1,7 @@
+[build]
+  functions = "netlify/functions"
+  publish = "public"
+
+[build.environment]
+  GOOGLE_API_KEY = "AIzaSyAAOsCMT18wlVcgYTeRrnHPkTVLz6SrD3s" # Add your API key here (or set in Netlify UI)
+ 
