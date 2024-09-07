@@ -1,3 +1,6 @@
+import { GoogleGenerativeAI } from 'https://esm.run/@google/generative-ai';
+
+
 const {
   GoogleGenerativeAI,
   HarmCategory,
