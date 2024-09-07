@@ -1,1 +1,17 @@
+{
+  "name": "my-pwa",
+  "version": "1.0.0",
+  "description": "A Progressive Web App for generating novel notes",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server ./public"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1",
+    "jsPDF": "^2.5.1"
+  },
+  "devDependencies": {
+    "netlify-cli": "^14.8.2"
+  }
+}
  
